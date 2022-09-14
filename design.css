@@ -1,0 +1,20 @@
+
+body {
+    background: #ded887;
+    text-align: center;
+    text-transform: uppercase;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 100px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+#text {
+    width: 50vw;
+    height: 10%;
+    background: white;
+    border: #000 5px;
+}
