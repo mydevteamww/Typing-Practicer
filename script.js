@@ -8,7 +8,22 @@ var correct = document.getElementById('correct');
 var incorrect = document.getElementById('incorrect');
 var unselected = document.getElementById('unselected');
 
+var timer = document.getElementById('timer');
+var startButton = document.getElementById('start');
+var hasStarted = false;
+
 unselected.innerHTML = texts[index];
+
+startButton.addEventListener('click', function() {
+    if(!hasStarted) {
+        startButton.style.backgroundColor = "#ddd";
+        startButton.style.color = "#555";
+
+        setInterval(timerTick, 1000);
+        
+        hasStarted = true;
+    }
+})
 
 inputObject.addEventListener('input', function() {
     var text = inputObject.value;
@@ -37,3 +52,32 @@ inputObject.addEventListener('input', function() {
     incorrect.innerHTML = texts[index].substring(correctIndex, incorrectIndex);
     unselected.innerHTML = texts[index].substring(incorrectIndex);
 });
+
+function timerTick() {
+    var seconds = parseInt(timer.innerHTML.substring(3));
+    var minutes = parseInt(timer.innerHTML.substring(0, 2));
+
+    var secondsText = "";
+    var minutesText = "";
+
+    seconds++;
+    if(seconds >= 60) {
+        secondsText = "00";
+        minutes++;
+    }
+    else if(seconds < 10) {
+        secondsText = "0" + seconds;
+    }
+    else {
+        secondsText = seconds;
+    }
+
+    if(minutes < 10) {
+        minutesText = "0" + minutes;
+    }
+    else {
+        minutesText = minutes;
+    }
+
+    timer.innerHTML = minutesText + ":" + secondsText;
+}
