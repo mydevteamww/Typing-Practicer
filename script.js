@@ -13,19 +13,27 @@ unselected.innerHTML = texts[index];
 inputObject.addEventListener('input', function() {
     var text = inputObject.value;
 
-    var words = text.split(' ');
-    var indexCount = 0;
-    for(let i = 0; i < words.length; i++) {
-        var isRed = false
-
-        var correctWord = texts[index].split(' ')[i];
-        if(correctWord == undefined) { 
-            isRed = true
+    var correctIndex = 0;
+    for(let i = 0; i < text.length && i < texts[index].length; i++) {
+        if(text[i] != texts[index][i]) {
+            break;
         }
         else {
-            if(correctWord == words[i]) {
-                console.log("correct");
-            }
+            correctIndex++;
         }
     }
+    
+    var incorrectIndex = correctIndex;
+    if(correctIndex < text.length) { // If not everything in input is correct
+        if(text.length <= texts[index].length) {
+            incorrectIndex = text.length;
+        }
+        else {
+            incorrectIndex = texts[index].length;
+        }
+    }
+
+    correct.innerHTML = texts[index].substring(0, correctIndex);
+    incorrect.innerHTML = texts[index].substring(correctIndex, incorrectIndex);
+    unselected.innerHTML = texts[index].substring(incorrectIndex);
 });
