@@ -25,7 +25,8 @@ var ongoingGame = false;
 
 unselected.innerHTML = texts[index];
 
-const round = setInterval(timerTick, 1000);
+setInterval(timerTick, 1000);
+startButton.innerHTML = "START";
 
 startButton.addEventListener('click', function() {
     if(!ongoingGame) {
@@ -35,18 +36,11 @@ startButton.addEventListener('click', function() {
         
         ongoingGame = true;
     }
-    else {
-        timer.innerHTML = "00:00";
-        
-        correct.innerHTML = "";
-        incorrect.innerHTML = "";
-        unselected.innerHTML = texts[index];
-
-        inputObject.value = "";
-    }
+    
+    resetScreen();
 })
 startButton.onmouseover = function() {
-    if(!ongoingGame) {
+    if(startButton.innerHTML == "START") {
         startButton.style.backgroundColor = startBgColorHover;
     }
     else {
@@ -54,7 +48,7 @@ startButton.onmouseover = function() {
     }
 }
 startButton.onmouseleave = function() {
-    if(!ongoingGame) {
+    if(startButton.innerHTML == "START") {
         startButton.style.backgroundColor = startBgColor;
     }
     else {
@@ -63,39 +57,39 @@ startButton.onmouseleave = function() {
 }
 
 inputObject.addEventListener('input', function() {
-    var text = inputObject.value;
+    if(ongoingGame) {
+        var text = inputObject.value;
 
-    var correctIndex = 0;
-    for(let i = 0; i < text.length && i < texts[index].length; i++) {
-        if(text[i] != texts[index][i]) {
-            break;
+        var correctIndex = 0;
+        for(let i = 0; i < text.length && i < texts[index].length; i++) {
+            if(text[i] != texts[index][i]) {
+                break;
+            }
+            else {
+                correctIndex++;
+            }
         }
-        else {
-            correctIndex++;
+        
+        var incorrectIndex = correctIndex;
+        if(correctIndex < text.length) { // If not everything in input is correct
+            if(text.length <= texts[index].length) {
+                incorrectIndex = text.length;
+            }
+            else {
+                incorrectIndex = texts[index].length;
+            }
+        }
+
+        correct.innerHTML = texts[index].substring(0, correctIndex);
+        incorrect.innerHTML = texts[index].substring(correctIndex, incorrectIndex);
+        unselected.innerHTML = texts[index].substring(incorrectIndex);
+
+        if(correct.innerHTML == texts[index]) {
+            ongoingGame = false;
         }
     }
-    
-    var incorrectIndex = correctIndex;
-    if(correctIndex < text.length) { // If not everything in input is correct
-        if(text.length <= texts[index].length) {
-            incorrectIndex = text.length;
-        }
-        else {
-            incorrectIndex = texts[index].length;
-        }
-    }
-
-    correct.innerHTML = texts[index].substring(0, correctIndex);
-    incorrect.innerHTML = texts[index].substring(correctIndex, incorrectIndex);
-    unselected.innerHTML = texts[index].substring(incorrectIndex);
-
-    if(correct.innerHTML == texts[index]) {
-        ongoingGame = false;
-        clearInterval(round);
-
-        startButton.style.backgroundColor = startBgColor;
-        startButton.style.color = startColor;
-        startButton.innerHTML = "START"
+    else {
+        inputObject.value = "";
     }
 });
 
@@ -128,4 +122,14 @@ function timerTick() {
 
         timer.innerHTML = minutesText + ":" + secondsText;
     }
+}
+
+function resetScreen() {
+    timer.innerHTML = "00:00";
+        
+    correct.innerHTML = "";
+    incorrect.innerHTML = "";
+    unselected.innerHTML = texts[index];
+
+    inputObject.value = "";
 }
