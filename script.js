@@ -15,6 +15,10 @@ var startBgColorHover = "#378039";
 var restartBgColor = "#c23838";
 var restartColor = "#6e2020";
 var restartBgColorHover = "#4a1414";
+var stopButton = document.getElementById('stop');
+var stopBgColor = restartBgColor;
+var stopColor = restartColor;
+var stopBgColorHover = restartBgColorHover;
 
 var correct = document.getElementById('correct');
 var incorrect = document.getElementById('incorrect');
@@ -54,6 +58,21 @@ startButton.onmouseleave = function() {
     else {
         startButton.style.backgroundColor = restartBgColor;
     }
+}
+
+stopButton.addEventListener('click', function() {
+    resetScreen();
+    ongoingGame = false; 
+
+    startButton.style.backgroundColor = startBgColor;
+    startButton.style.color = startColor;
+    startButton.innerHTML = "START"
+})
+stopButton.onmouseover = function() {
+    stopButton.style.backgroundColor = stopBgColorHover;
+}
+stopButton.onmouseleave = function() {
+    stopButton.style.backgroundColor = stopBgColor;
 }
 
 inputObject.addEventListener('input', function() {
