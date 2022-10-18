@@ -21,10 +21,8 @@ h1 {
     font-size: 20px;
     border-radius: 10px;
     border:none;
-    background-color: #fff;
-}
-#start:hover {
-    background-color: #eee;
+    background-color: #4ecc52;
+    color: #18471a;
 }
 
 #textParent {
