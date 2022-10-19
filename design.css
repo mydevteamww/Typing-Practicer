@@ -5,7 +5,58 @@ body {
     font-family:Arial, Helvetica, sans-serif;
     padding: 100px;
     margin: auto;
-    color: black;
+    color: #222;
+}
+
+#stats {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+#stats i, #stats div {
+    background: #6db4d1;
+    width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    color: #407387;
+}
+#stats section {
+    position: relative;
+    height: auto;
+}
+#stats i {
+    border-radius: 50px;
+    font-size: 25px;
+}
+#stats i:first-child {
+    position: absolute;
+    left: 0;
+}
+#stats i:last-child {
+    visibility: hidden;
+}
+#stats div {
+    visibility: hidden;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+#stats i:hover {
+    box-shadow: #000 0 0 10px;
+    transition: 0.5s;
+}
+
+#stats-table tr {
+    align-items: flex-end;
+    white-space: nowrap;
+    text-align: left;
+    color: #222;
+}
+#stats-table th {
+    width: auto;
+    padding: 3px 10px;
+}
+#stats-table th:last-child {
+    padding-left: 20px;
 }
 
 h1 {
@@ -86,7 +137,7 @@ button {
 #timer {
     font-weight: bold;
     font-size: 60px;
-    margin: 10px; 
+    margin: 10px;
 }
 
 #results {
@@ -103,7 +154,7 @@ button {
 }
 #results tr {
     width: 100% auto;
-    margin: 0 auto; 
+    margin: 0 auto;
     background-color: white;
     align-items: flex-end;
     text-align: left;

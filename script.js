@@ -34,8 +34,29 @@ unselected.innerHTML = texts[index];
 
 var startTime = 0; 
 
+var highestSpeed = document.querySelector('#stats-table tr:nth-child(1) th:nth-child(2)');
+var averageSpeed = document.querySelector('#stats-table tr:nth-child(2) th:nth-child(2)');
+var lastSpeed = document.querySelector('#stats-table tr:nth-child(3) th:nth-child(2)');
+
+var speedArray = [];
+
+var statsButton = document.querySelector('#stats i:first-child');
+var statsTable = document.querySelector('#stats div');
+var statsShown = false; 
+
 setInterval(timerTick, 1000);
 startButton.innerHTML = "START";
+
+statsButton.addEventListener('click', function() {
+    if(statsShown) {
+        statsTable.style.visibility = 'hidden';
+    }
+    else {
+        statsTable.style.visibility = 'visible';
+    }
+
+    statsShown = !statsShown;
+})
 
 startButton.addEventListener('click', function() {
     if(!ongoingGame) {
@@ -119,7 +140,24 @@ inputObject.addEventListener('input', function() {
             var d = new Date();
             var minutesPassed = (d.getTime() - startTime) / (1000*60);
             var speed = texts[index].split(' ').length / minutesPassed;
-            addResults(Math.floor(speed));
+            speed = Math.floor(speed);
+            addResults(speed);
+
+            speedArray.push(speed);
+
+            var highestSpeed_ = highestSpeed.innerHTML.split(' ')[0];
+            if(speed > highestSpeed_) {
+                highestSpeed.innerHTML = speed + " wpm"; 
+            }
+
+            lastSpeed.innerHTML = speed + " wpm";
+
+            var sum = 0;
+            for(let i = 0; i < speedArray.length; i++) {
+                sum += speedArray[i];
+            }
+            var average = Math.floor(sum/(speedArray.length));
+            averageSpeed.innerHTML = average + " wpm";
         }
     }
     else {
