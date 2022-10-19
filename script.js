@@ -4,7 +4,7 @@ var texts = [ "Somebody" ];
 //  "She was looking kind of dumb with her finger and her thumb In the shape of an \"L\" on her forehead" ];
 
 
- var index = 0;
+var index = 0;
 var textObject = document.getElementById('text');
 var inputObject = document.getElementById('inputObject');
 
@@ -29,6 +29,8 @@ var ongoingGame = false;
 
 unselected.innerHTML = texts[index];
 
+var startTime = 0; 
+
 setInterval(timerTick, 1000);
 startButton.innerHTML = "START";
 
@@ -39,6 +41,9 @@ startButton.addEventListener('click', function() {
         startButton.innerHTML = "RESTART"
         
         ongoingGame = true;
+        var d = new Date()
+        startTime = d.getTime();
+        
     }
     
     resetScreen();
@@ -106,8 +111,10 @@ inputObject.addEventListener('input', function() {
         if(correct.innerHTML == texts[index]) {
             ongoingGame = false;
             
-            var speed = 0;
-            addResults(speed);
+            var d = new Date();
+            var minutesPassed = (d.getTime() - startTime) / (1000*60);
+            var speed = texts[index].split(' ').length / minutesPassed;
+            addResults(Math.floor(speed));
         }
     }
     else {
@@ -172,7 +179,7 @@ function addResults(speed) {
         speedText.style.color = "black";
 
         /* Format: 2022-10-18, 11:28:23 */
-        var date = new Date();
+        var d = new Date();
         function fixedLength(i) {
             if(i < 10) {
                 i = "0" + i;
@@ -180,12 +187,12 @@ function addResults(speed) {
             return i;
         }
 
-        timeText.innerHTML = date.getFullYear() + "-" + 
-            fixedLength(date.getMonth()) + "-" + 
-            fixedLength(date.getDate()) + ", " + 
-            fixedLength(date.getHours()) + ":" + 
-            fixedLength(date.getMinutes()) + ":" + 
-            fixedLength(date.getSeconds());
+        timeText.innerHTML = d.getFullYear() + "-" + 
+            fixedLength(d.getMonth()) + "-" + 
+            fixedLength(d.getDate()) + ", " + 
+            fixedLength(d.getHours()) + ":" + 
+            fixedLength(d.getMinutes()) + ":" + 
+            fixedLength(d.getSeconds());
 
         speedText.innerHTML = speed + " wpm";
     }
@@ -208,7 +215,7 @@ function addResults(speed) {
         speedText_.style.color = "black";
 
         /* 2022-10-18, 11:28:23 */
-        var date = new Date();
+        var d = new Date();
         function fixedLength(i) {
             if(i < 10) {
                 i = "0" + i;
@@ -216,12 +223,12 @@ function addResults(speed) {
             return i;
         }
 
-        timeText_.innerHTML = date.getFullYear() + "-" + 
-            fixedLength(date.getMonth()) + "-" + 
-            fixedLength(date.getDate()) + ", " + 
-            fixedLength(date.getHours()) + ":" + 
-            fixedLength(date.getMinutes()) + ":" + 
-            fixedLength(date.getSeconds());
+        timeText_.innerHTML = d.getFullYear() + "-" + 
+            fixedLength(d.getMonth()) + "-" + 
+            fixedLength(d.getDate()) + ", " + 
+            fixedLength(d.getHours()) + ":" + 
+            fixedLength(d.getMinutes()) + ":" + 
+            fixedLength(d.getSeconds());
 
             speedText_.innerHTML = speed + " wpm";
     }
