@@ -65,6 +65,8 @@ startButton.addEventListener('click', function() {
         startButton.innerHTML = "RESTART"
         
         ongoingGame = true;
+
+        inputObject.focus()
     }
 
     var d = new Date()

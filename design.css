@@ -140,16 +140,17 @@ button {
     margin: 10px;
 }
 
+h2 {
+    margin: 50px 0 10px 0;
+    text-transform: uppercase;
+    padding: 0;
+    font-size: 30px;
+}
 #results {
     width: 60vw;
     margin: 0 auto;
     background: black;
     border: #000 solid 1px;
-    padding: 0;
-}
-#results h2 {
-    margin: 0 auto;
-    text-transform: uppercase;
     padding: 0;
 }
 #results tr {
