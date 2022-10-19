@@ -1,7 +1,10 @@
-var texts = [ "Somebody" ];
-
-//  var texts = [ "Somebody once told me the world is gonna roll me. I ain't the sharpest tool in the shed. " +
-//  "She was looking kind of dumb with her finger and her thumb In the shape of an \"L\" on her forehead" ];
+ var texts = [ "Somebody once told me the world is gonna roll me. I ain't the sharpest tool in the shed. " +
+    "She was looking kind of dumb with her finger and her thumb in the shape of an \"L\" on her forehead.",
+    "Hit or miss. I guess they never miss, huh? You got a boyfriend, I bet he doesn't kiss ya. " +
+    "He gon' find another girl and he won't miss ya. He gon' skrrt and hit the dab like Wiz Khalifa.",
+    "To be, or not to be: that is the question: Whether 'tis nobler in the mind to suffer. " +
+    "The slings and arrows of outrageous fortune. Or to take arms against a sea of troubles. " +
+    "And by opposing end them? To die: to sleep;" ];
 
 
 var index = 0;
@@ -41,10 +44,12 @@ startButton.addEventListener('click', function() {
         startButton.innerHTML = "RESTART"
         
         ongoingGame = true;
-        var d = new Date()
-        startTime = d.getTime();
-        
     }
+
+    var d = new Date()
+    startTime = d.getTime();
+    
+    index = Math.floor(Math.random() * texts.length);
     
     resetScreen();
 })
