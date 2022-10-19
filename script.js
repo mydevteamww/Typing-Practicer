@@ -1,4 +1,4 @@
-var texts = [ "Somebody once told me" ];
+var texts = [ "Somebody" ];
 
 //  var texts = [ "Somebody once told me the world is gonna roll me. I ain't the sharpest tool in the shed. " +
 //  "She was looking kind of dumb with her finger and her thumb In the shape of an \"L\" on her forehead" ];
@@ -105,6 +105,9 @@ inputObject.addEventListener('input', function() {
 
         if(correct.innerHTML == texts[index]) {
             ongoingGame = false;
+            
+            var speed = 0;
+            addResults(speed);
         }
     }
     else {
@@ -151,4 +154,75 @@ function resetScreen() {
     unselected.innerHTML = texts[index];
 
     inputObject.value = "";
+}
+
+function addResults(speed) {
+    var results = document.getElementById('results');
+    var amountOfResults = results.childElementCount;
+
+    var timeText = document.querySelector('#results tr:nth-child(2) th:nth-child(2)');
+    var speedText = document.querySelector('#results tr:nth-child(2) th:nth-child(3)');
+
+    if(amountOfResults == 1 && timeText.style.color == "white") {
+        amountOfResults = 0; 
+    }
+
+    if(amountOfResults == 0) {
+        timeText.style.color = "black";
+        speedText.style.color = "black";
+
+        /* Format: 2022-10-18, 11:28:23 */
+        var date = new Date();
+        function fixedLength(i) {
+            if(i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        timeText.innerHTML = date.getFullYear() + "-" + 
+            fixedLength(date.getMonth()) + "-" + 
+            fixedLength(date.getDate()) + ", " + 
+            fixedLength(date.getHours()) + ":" + 
+            fixedLength(date.getMinutes()) + ":" + 
+            fixedLength(date.getSeconds());
+
+        speedText.innerHTML = speed + " wpm";
+    }
+    else {
+
+        var count = document.createElement("th");
+        var timeText_ = document.createElement("th");
+        var speedText_ = document.createElement("th");
+
+        var resultsRow = document.createElement("tr");
+        resultsRow.appendChild(count);
+        resultsRow.appendChild(timeText_);
+        resultsRow.appendChild(speedText_);
+
+        results.appendChild(resultsRow);
+
+        count.innerHTML = results.childElementCount + ".";
+
+        timeText_.style.color = "black";
+        speedText_.style.color = "black";
+
+        /* 2022-10-18, 11:28:23 */
+        var date = new Date();
+        function fixedLength(i) {
+            if(i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        timeText_.innerHTML = date.getFullYear() + "-" + 
+            fixedLength(date.getMonth()) + "-" + 
+            fixedLength(date.getDate()) + ", " + 
+            fixedLength(date.getHours()) + ":" + 
+            fixedLength(date.getMinutes()) + ":" + 
+            fixedLength(date.getSeconds());
+
+            speedText_.innerHTML = speed + " wpm";
+    }
 }

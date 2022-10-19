@@ -88,3 +88,31 @@ button {
     font-size: 60px;
     margin: 10px; 
 }
+
+#results {
+    width: 60vw;
+    margin: 0 auto;
+    background: black;
+    border: #000 solid 1px;
+    padding: 0;
+}
+#results h2 {
+    margin: 0 auto;
+    text-transform: uppercase;
+    padding: 0;
+}
+#results tr {
+    width: 100% auto;
+    margin: 0 auto; 
+    background-color: white;
+    align-items: flex-end;
+    text-align: left;
+}
+#results tr th {
+    font-weight: normal;
+    margin:0;
+    padding: 5px;
+}
+#results tr:first-child th {
+    font-weight: bolder;
+}
