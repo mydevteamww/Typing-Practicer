@@ -65,8 +65,6 @@ startButton.addEventListener('click', function() {
         startButton.innerHTML = "RESTART"
         
         ongoingGame = true;
-
-        inputObject.focus()
     }
 
     var d = new Date()
@@ -75,6 +73,8 @@ startButton.addEventListener('click', function() {
     index = Math.floor(Math.random() * texts.length);
     
     resetScreen();
+
+    inputObject.focus()
 })
 startButton.onmouseover = function() {
     if(startButton.innerHTML == "START") {
