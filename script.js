@@ -10,7 +10,7 @@
 var index = 0;
 var textObject = document.getElementById('text');
 var inputObject = document.getElementById('inputObject');
-
+ 
 var startButton = document.getElementById('start');
 var startBgColor = startButton.style.backgroundColor;
 var startColor = startButton.style.color; 
@@ -166,6 +166,7 @@ inputObject.addEventListener('input', function() {
         inputObject.value = "";
     }
 });
+inputObject.addEventListener('paste', e => e.preventDefault());
 
 function timerTick() {
     if(ongoingGame) {
