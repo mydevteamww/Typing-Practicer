@@ -1,11 +1,11 @@
 
 body {
-    background: #c5d3d9;
+    background: #111;
     text-align: center;
     font-family:Arial, Helvetica, sans-serif;
     padding: 100px;
     margin: auto;
-    color: #222;
+    color: #eee;
 }
 
 #stats {
@@ -95,6 +95,7 @@ button {
     background: transparent;
     margin: 0 auto;
     align-items: flex-end;
+    color: #000;
 }
 
 #text {
@@ -152,6 +153,7 @@ h2 {
     background: black;
     border: #000 solid 1px;
     padding: 0;
+    color: black;
 }
 #results tr {
     width: 100% auto;
